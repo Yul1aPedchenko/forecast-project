@@ -1,3 +1,4 @@
+import './sass/main.scss';
 function App() {
 
   return (
