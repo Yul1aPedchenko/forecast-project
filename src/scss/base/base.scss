@@ -1,8 +1,9 @@
-@use './utils//reset';
+@use './reset';
 @import 'normalize.css';
 
 body {
     background-color: rgb(255, 196, 245);
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    font-size: 14px;
 }
