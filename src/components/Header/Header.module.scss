@@ -1,0 +1,97 @@
+@import "../../scss/utils/variables.scss";
+@import "../../scss/utils/mixins.scss";
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: $mainBgColor;
+  &.open {
+    box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25);
+  }
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    @include typography(Montserrat Alternates, 500, 10px);
+  }
+  &__logo {
+    width: 34px;
+  }
+  &__nav {
+    display: none;
+  }
+  &__actions {
+    display: none;
+  }
+  &__btn {
+    background-color: transparent;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+}
+
+@include tab() {
+  .header {
+    box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25);
+    &__logo {
+      width: 54px;
+    }
+    &__nav {
+      display: flex;
+    }
+    &__list {
+      display: flex;
+      gap: 45px;
+    }
+    &__link {
+      color: $mainTextColor;
+      transition: all 250ms ease-in-out;
+    }
+    &__link:hover {
+      color: $accentColor;
+    }
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    &__signup {
+      background-color: $accentColor;
+      padding: 8px 16px;
+      border-radius: 10px;
+      outline: 1px solid $accentColor;
+      color: $secondaryTextColor;
+      transition: all 250ms ease-in-out;
+    }
+    &__signup:hover {
+      background-color: transparent;
+      color: $accentColor;
+    }
+    &__user {
+      width: 40px;
+    }
+    &__mobile {
+      display: none;
+    }
+  }
+}
+
+@include desk() {
+  .header {
+    &__wrap {
+      font-size: 12px;
+    }
+    &__logo {
+      width: 82px;
+    }
+    &__actions {
+      gap: 27px;
+    }
+    &__user {
+      width: 50px;
+    }
+  }
+}

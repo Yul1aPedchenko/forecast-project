@@ -1,4 +1,5 @@
-import style from './Conatainer';
-export const Conatainer = ({ children }) => {
-  return <div className={style.conatainer}>{children}</div>;
+import style from './Container.module.scss';
+
+export const Container = ({ children }) => {
+  return <div className={style.container}>{children}</div>;
 };
