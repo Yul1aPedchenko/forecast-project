@@ -1,12 +1,12 @@
 import { Container } from "../../Container/Container";
 import styles from "./MobileMenu.module.scss";
 import User from "../../../images/user.svg";
-export const MobileMenu = ({ isOpen, onClose }) => {
+export const MobileMenu = ({ isMenuOpen, onClose, onClick }) => {
   return (
     <>
-      {isOpen && <div className={styles.backdrop} onClick={onClose}></div>}
+      {isMenuOpen && <div className={styles.backdrop} onClick={onClose}></div>}
 
-      <div className={`${styles.mobile} ${isOpen ? styles.open : ""}`}>
+      <div className={`${styles.mobile} ${isMenuOpen ? styles.open : ""}`}>
         <Container>
           <div className={styles.mobile__wrap}>
             <nav className={styles.mobile__nav}>
@@ -24,7 +24,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
             </nav>
             <div className={styles.mobile__actions}>
               <img className={styles.mobile__user} src={User} alt="user avatar" />
-              <button className={styles.mobile__signup}>Sign Up</button>
+              <button className={styles.mobile__signup} onClick={onClick}>Sign Up</button>
             </div>
           </div>
         </Container>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container } from "../Container/Container";
 import { MobileMenu } from "./MobileMenu/MobileMenu";
+import { AuthModal } from "../AuthModal/AuthModal";
 
 import styles from "./Header.module.scss";
 import Logo from "../../images/logo.svg";
@@ -8,11 +9,12 @@ import User from "../../images/user.svg";
 import { IoIosArrowDown } from "react-icons/io";
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      <header className={`${styles.header} ${isOpen ? styles.open : ""}`}>
+      <header className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}>
         <Container>
           <div className={styles.header__wrap}>
             <img className={styles.header__logo} src={Logo} alt="logo" />
@@ -36,11 +38,13 @@ export const Header = () => {
               </ul>
             </nav>
             <div className={styles.header__actions}>
-              <button className={styles.header__signup}>Sign Up</button>
+              <button className={styles.header__signup} onClick={() => setIsModalOpen(!isModalOpen)}>
+                Sign Up
+              </button>
               <img className={styles.header__user} src={User} alt="user avatar" />
             </div>
             <div className={styles.header__mobile}>
-              <button className={`${styles.header__btn} ${isOpen ? styles.open : ""}`} onClick={() => setIsOpen(!isOpen)}>
+              <button className={`${styles.header__btn} ${isMenuOpen ? styles.open : ""}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 Menu
                 <IoIosArrowDown />
               </button>
@@ -48,7 +52,8 @@ export const Header = () => {
           </div>
         </Container>
       </header>
-      <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <MobileMenu isMenuOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onClick= {() => setIsModalOpen(!isModalOpen)} />
+      <AuthModal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
