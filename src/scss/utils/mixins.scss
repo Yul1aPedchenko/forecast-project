@@ -18,13 +18,13 @@
   flex-direction: $flex-direction;
 }
 
-@mixin tab() {
+@mixin tablet() {
   @media screen and (min-width: 830px) {
     @content;
   }
 }
 
-@mixin desk() {
+@mixin desktop() {
   @media screen and (min-width: 1440px) {
     @content;
   }

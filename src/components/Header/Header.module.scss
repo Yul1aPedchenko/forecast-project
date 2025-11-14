@@ -1,7 +1,8 @@
 @import "../../scss/utils/variables.scss";
 @import "../../scss/utils/mixins.scss";
+
 .header {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
   z-index: 100;
@@ -30,10 +31,18 @@
     display: flex;
     gap: 5px;
     align-items: center;
+    svg {
+      transition: $ts;
+    }
+  }
+  &__btn.open {
+    svg {
+      transform: rotate(-180deg);
+    }
   }
 }
 
-@include tab() {
+@include tablet() {
   .header {
     box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25);
     &__logo {
@@ -48,7 +57,7 @@
     }
     &__link {
       color: $mainTextColor;
-      transition: all 250ms ease-in-out;
+      transition: $ts;
     }
     &__link:hover {
       color: $accentColor;
@@ -64,7 +73,7 @@
       border-radius: 10px;
       outline: 1px solid $accentColor;
       color: $secondaryTextColor;
-      transition: all 250ms ease-in-out;
+      transition: $ts;
     }
     &__signup:hover {
       background-color: transparent;
@@ -79,7 +88,7 @@
   }
 }
 
-@include desk() {
+@include desktop() {
   .header {
     &__wrap {
       font-size: 12px;
