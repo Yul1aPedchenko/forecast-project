@@ -1,0 +1,68 @@
+@import "../../../scss/utils/variables.scss";
+@import "../../../scss/utils/mixins.scss";
+
+.mobile {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: $menuBgColor;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.35s ease;
+  z-index: 99;
+  padding: 30px 0;
+  // display: none;
+  &.open {
+    transform: translateY(0);
+    opacity: 1;
+    // display: block;
+  }
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+    @include typography(Montserrat Alternates, 500, 10px);
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  &__link {
+    color: $mainTextColor;
+    transition: all 250ms ease-in-out;
+  }
+  &__link:hover {
+    color: $accentColor;
+  }
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  &__user {
+    width: 40px;
+  }
+  &__signup {
+    background-color: $accentColor;
+    padding: 8px 16px;
+    border-radius: 10px;
+    outline: 1px solid $accentColor;
+    color: $secondaryTextColor;
+    transition: all 250ms ease-in-out;
+  }
+  &__signup:hover {
+    background-color: transparent;
+    color: $accentColor;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 98;
+  transition: all 250ms ease-in-out;
+}
