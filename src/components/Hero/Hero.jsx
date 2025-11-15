@@ -1,55 +1,59 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { getWeatherByCity } from "../../api/weatherAPI";
+import { addCityToRecents } from "../../api/userAPI";
+
 import { Container } from "../Container/Container";
 import styles from "./Hero.module.scss";
-
 import { IoSearchOutline } from "react-icons/io5";
 
 export const Hero = () => {
-  const [date, setDate] = useState(new Date());
+  const [query, setQuery] = useState("");
+  const { user, updateUser, localRecents, setLocalRecents } = useAuth();
 
-  useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 1000 * 60 * 60 * 24);
-    return () => clearInterval(timer);
-  }, []);
+  const handleSearch = async (e) => {
+    e.preventDefault();
 
-  const monthYear = date.toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
-  const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
-  const day = date.getDate();
-  const getSuffix = (n) => {
-    if (n >= 11 && n <= 13) {
-      return "th";
-    } else if (n % 10 == 1) {
-      return "st";
-    } else if (n % 10 == 2) {
-      return "nd";
-    } else if (n % 10 == 1) {
-      return "rd";
-    } else {
-      return "th";
+    if (!query.trim()) return;
+
+    try {
+      const cityData = await getWeatherByCity(query);
+      console.log(cityData);
+      const city = {
+        name: cityData.name,
+        country: cityData.sys.country,
+        temp: cityData.main.temp,
+        weather: cityData.weather[0].main,
+        icon: cityData.weather[0].icon,
+        dt: cityData.dt,
+        id: cityData.id,
+      };
+
+      if (user) {
+        const filtered = user.recents.filter(c => c.name.toLowerCase() !== city.name.toLowerCase());
+        const newRecents = [city, ...filtered];
+        await addCityToRecents(user.id, newRecents);
+        updateUser({ ...user, recents: newRecents });
+      } else {
+        const filtered = localRecents.filter(c => c.name.toLowerCase() !== city.name.toLowerCase());
+        setLocalRecents([city, ...filtered]);
+      }
+
+      setQuery("");
+    } catch (error) {
+      console.log("City not found", error);
+      alert("City not found");
     }
   };
 
-  const daysSuffix = `${getSuffix(day)}`;
   return (
     <section className={styles.hero}>
       <Container>
         <div>
           <h1>Weather dashboard</h1>
-          <div>
-            <h2>Create your personal list of favorite cities and always be aware of the weather.</h2>
-            <div></div>
-            <div>
-              <p>{monthYear}</p>
-              <p>
-                {weekday}, {day} <span>{daysSuffix}</span>
-              </p>
-            </div>
-          </div>
-          <form>
-            <input type="text" placeholder="Search location..." />
+
+          <form onSubmit={handleSearch}>
+            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search location..." />
             <button type="submit">
               <IoSearchOutline />
             </button>
