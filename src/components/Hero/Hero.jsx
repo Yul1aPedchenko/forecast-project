@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-
 import { getWeatherByCity } from "../../api/weatherAPI";
 import { addCityToRecents } from "../../api/userAPI";
 
@@ -13,39 +12,39 @@ export const Hero = () => {
   const { user, updateUser, localRecents, setLocalRecents } = useAuth();
 
   const handleSearch = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!query.trim()) return;
+    if (!query.trim()) return;
 
-  try {
-    const cityData = await getWeatherByCity(query);
-    console.log(cityData)
-    const city = {
-      name: cityData.name,
-      temp: cityData.main.temp,
-      weather: cityData.weather[0].main,
-    };
+    try {
+      const cityData = await getWeatherByCity(query);
+      console.log(cityData);
+      const city = {
+        name: cityData.name,
+        country: cityData.sys.country,
+        temp: cityData.main.temp,
+        weather: cityData.weather[0].main,
+        icon: cityData.weather[0].icon,
+        dt: cityData.dt,
+        id: cityData.id,
+      };
 
-    if (user) {
-      const filteredRecents = user.recents.filter(
-        (item) => item.name.toLowerCase() !== city.name.toLowerCase()
-      );
-      const updatedRecents = [city, ...filteredRecents];
-      const updatedUser = await addCityToRecents(user.id, updatedRecents);
-      updateUser(updatedUser);
-    } else {
-      const filteredRecents = localRecents.filter(
-        (item) => item.name.toLowerCase() !== city.name.toLowerCase()
-      );
-      setLocalRecents([city, ...filteredRecents]);
+      if (user) {
+        const filtered = user.recents.filter(c => c.name.toLowerCase() !== city.name.toLowerCase());
+        const newRecents = [city, ...filtered];
+        await addCityToRecents(user.id, newRecents);
+        updateUser({ ...user, recents: newRecents });
+      } else {
+        const filtered = localRecents.filter(c => c.name.toLowerCase() !== city.name.toLowerCase());
+        setLocalRecents([city, ...filtered]);
+      }
+
+      setQuery("");
+    } catch (error) {
+      console.log("City not found", error);
+      alert("City not found");
     }
-
-    setQuery("");
-  } catch (error) {
-    console.log("City not found", error);
-    alert("City not found");
-  }
-};
+  };
 
   return (
     <section className={styles.hero}>
@@ -54,7 +53,7 @@ export const Hero = () => {
           <h1>Weather dashboard</h1>
 
           <form onSubmit={handleSearch}>
-            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search location..."/>
+            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search location..." />
             <button type="submit">
               <IoSearchOutline />
             </button>
