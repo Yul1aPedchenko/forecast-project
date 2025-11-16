@@ -47,7 +47,6 @@ export const Hero = () => {
       alert("City not found");
     }
   };
-  console.log("API KEY:", import.meta.env.VITE_OPENWEATHER_KEY);
 
   return (
     <section className={styles.hero}>
