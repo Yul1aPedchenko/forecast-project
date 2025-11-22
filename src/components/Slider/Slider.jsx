@@ -42,7 +42,7 @@ export const Slider = () => {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 40 }}>
+      <div>
         <ThreeDots height="80" width="80" color="#444" />
       </div>
     );
