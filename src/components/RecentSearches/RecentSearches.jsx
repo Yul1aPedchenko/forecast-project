@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 import { CityCard } from "./CityCard/CityCard";
 import { Container } from "../Container/Container";
-import styles from "./RecentSearches.module.scss";
 
 import { Metrics } from "../Metrics/Metrics";
 import { HourlyForecast } from "../HourlyForecast/HourlyForecast";
