@@ -15,7 +15,7 @@ import { WeeklyForecast } from "../WeeklyForecast/WeeklyForecast";
 import { weatherAPI } from "../../api/weatherAPI";
 import { userAPI } from "../../api/userAPI";
 
-import styles from "./RecentSearches.module.scss";
+import styles from "./Recentsearches.module.scss";
 
 export const RecentSearches = () => {
   const { user, localRecents, updateUser, refreshAllRecents } = useAuth();
