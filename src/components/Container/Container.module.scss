@@ -1,4 +1,5 @@
-@import '../../scss/utils/mixins.scss';
+@use "../../scss/utils/mixins.scss" as *;
+
 .container {
   min-width: 100%;
   margin: 0 auto;
