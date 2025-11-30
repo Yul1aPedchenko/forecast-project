@@ -4,7 +4,7 @@
 .weekly {
   margin-bottom: 50px;
   &__wrapper {
-    padding: 20px 25px 35px 25px;
+    // padding: 20px 25px 35px 25px;
     border-radius: 10px;
   }
   &__title {
@@ -33,7 +33,7 @@
       background-image: inherit;
       background-size: cover;
       background-position: center;
-      filter: blur(1px); 
+      filter: blur(1px);
       z-index: 1;
     }
     > * {
@@ -70,5 +70,37 @@
   .weekly__temps,
   .weekly__description {
     color: $secondaryTextColor;
+  }
+}
+
+@include tablet() {
+  .weekly {
+    &__title {
+      @include typography(Montserrat, 600, 12px);
+    }
+    &__item {
+      padding: 12px 15px;
+    }
+    &__date,
+    &__temps,
+    &__description {
+      @include typography(Montserrat, 500, 14px);
+    }
+  }
+}
+
+@include desktop() {
+  .weekly {
+    &__title {
+      @include typography(Montserrat, 600, 16px);
+    }
+    &__item {
+      padding: 15px 50px;
+    }
+    &__date,
+    &__temps,
+    &__description {
+      @include typography(Montserrat, 500, 16px);
+    }
   }
 }

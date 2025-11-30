@@ -98,6 +98,7 @@ export const RecentSearches = () => {
               <CityCard city={city} onLike={() => toggleFavourite(city)} onDelete={removeCity} onRefresh={() => refreshCity(city)} onMore={() => toggleSection(city, "more")} onHourly={() => toggleSection(city, "hourly")} onWeekly={() => toggleSection(city, "weekly")} />
             </div>
           ))}
+          {items.map(city => console.log(city.id, city.name, city.updatedAt))}
         </Slider>
 
         {activeSection.type === "more" && activeSection.forecast && <Metrics city={activeSection.city} forecast={activeSection.forecast} />}

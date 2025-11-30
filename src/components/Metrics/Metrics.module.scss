@@ -1,0 +1,40 @@
+@use "../../scss/utils/mixins.scss" as *;
+@use "../../scss/utils/variables.scss" as *;
+
+.metric {
+  background-color: rgba(201, 229, 255, 0.18);
+  border: 1px solid $accentColor;
+  margin-bottom: 60px;
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 150px;
+  }
+  &__minMax{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  &__min, &__max {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+@include tablet() {
+  .metric {
+    &__list {
+      flex-direction: row;
+      gap: 25px;
+    }
+  }
+}
+

@@ -23,7 +23,7 @@ export const useRecents = () => {
         updateUser({ ...user, recents: updatedRecents });
       } else {
         if (alreadyExists(localRecents)) return city;
-        
+
         setLocalRecents((prev) => {
           const filtered = prev.filter((c) => c.id !== city.id);
           const updated = [city, ...filtered].slice(0, 10);
@@ -43,12 +43,18 @@ export const useRecents = () => {
       if (!fresh) return;
 
       if (user) {
-        const updated = user.recents.map((c) => (c.id === city.id ? fresh : c));
-        await userAPI.update(user.id, { recents: updated });
-        updateUser({ ...user, recents: updated });
+        updateUser({
+          ...user,
+          recents: user.recents.map((c) => (c.id === city.id ? { ...fresh, updatedAt: Date.now() } : c)),
+        });
+
+        userAPI
+          .update(user.id, {
+            recents: user.recents.map((c) => (c.id === city.id ? fresh : c)),
+          })
+          .catch(console.error);
       } else {
-        const updated = localRecents.map((c) => (c.id === city.id ? fresh : c));
-        setLocalRecents(updated);
+        setLocalRecents((prev) => prev.map((c) => (c.id === city.id ? { ...fresh, updatedAt: Date.now() } : c)));
       }
     } catch (err) {
       console.warn("Failed to update:", city.name);

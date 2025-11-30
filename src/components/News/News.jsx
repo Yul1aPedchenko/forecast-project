@@ -5,7 +5,7 @@ import { ThreeDots } from "react-loader-spinner";
 import styles from "./News.module.scss";
 import { Container } from "../Container/Container";
 
-const API_URL = `https://newsapi.org/v2/everything`;
+const API_URL = import.meta.env.VITE_MOKAPI;
 
 export const News = () => {
   const [news, setNews] = useState([]);
@@ -29,14 +29,8 @@ export const News = () => {
     const loadNews = async () => {
       setLoading(true);
       try {
-        const r = await axios.get(`${API_URL}`, {
-          params: {
-            q: "nature",
-            apiKey: import.meta.env.VITE_NEWS_KEY
-          }
-        });
-        setNews(r.data.articles);
-        console.log(r.data.articles);
+        const r = await axios.get(`${API_URL}/news`);
+        setNews(r.data);
       } catch (error) {
         console.error("Error loading news", error);
       } finally {

@@ -1,6 +1,6 @@
 import styles from "./Metrics.module.scss";
 
-export const Metrics = ({ forecast}) => {
+export const Metrics = ({ forecast }) => {
   if (!forecast) return null;
 
   const current = forecast.current;
@@ -8,7 +8,7 @@ export const Metrics = ({ forecast}) => {
   const visibility = forecast.visibility;
 
   return (
-    <div>
+    <section className={styles.metric}>
       <div className={styles.metric__list}>
         <div className={styles.metric__item}>
           <span>Feels like</span>
@@ -16,16 +16,15 @@ export const Metrics = ({ forecast}) => {
         </div>
 
         <div className={styles.metric__item}>
-          <span>Min / Max</span>
           <div className={styles.metric__minMax}>
             <div className={styles.metric__min}>
-              <span className={styles.metric__value}>{Math.round(forecast.daily && forecast.daily[0] ? forecast.daily[0].temp.min : current.temp_min || current.temp)}°</span>
               <span className={styles.metric__label}>Min</span>
+              <span className={styles.metric__value}>{Math.round(forecast.daily && forecast.daily[0] ? forecast.daily[0].temp.min : current.temp_min || current.temp)}°</span>
             </div>
 
             <div className={styles.metric__max}>
-              <span className={styles.metric__value}>{Math.round(forecast.daily && forecast.daily[0] ? forecast.daily[0].temp.max : current.temp_max || current.temp)}°</span>
               <span className={styles.metric__label}>Max</span>
+              <span className={styles.metric__value}>{Math.round(forecast.daily && forecast.daily[0] ? forecast.daily[0].temp.max : current.temp_max || current.temp)}°</span>
             </div>
           </div>
         </div>
@@ -50,6 +49,6 @@ export const Metrics = ({ forecast}) => {
           <p>{(visibility / 1000).toFixed(1)} km</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
