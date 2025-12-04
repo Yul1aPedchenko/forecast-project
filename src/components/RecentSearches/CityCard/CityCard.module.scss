@@ -1,9 +1,6 @@
 @use "../../../scss/utils/mixins.scss" as *;
 @use "../../../scss/utils/variables.scss" as *;
 
-// .card {
-//   margin-right: 25px;
-// }
 .top {
   width: 285px;
   height: 438px;
@@ -34,6 +31,9 @@
     svg {
       color: $likeColor;
     }
+  }
+  &__fav &__faved {
+    color: $likeColor;
   }
   &__btns {
     display: flex;

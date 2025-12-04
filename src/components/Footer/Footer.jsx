@@ -9,7 +9,7 @@ import styles from "./Footer.module.scss";
 
 export const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="footer">
       <Container>
         <div className={styles.footer__wrapper}>
           <a href="#" className={styles.footer__logo}>

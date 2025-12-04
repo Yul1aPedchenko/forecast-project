@@ -2,6 +2,10 @@
 @use "../utils/variables.scss" as *;
 @import 'normalize.css';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     background-color: $mainBgColor;;
     font-family: "Montserrat", sans-serif;
