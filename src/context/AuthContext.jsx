@@ -28,13 +28,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      refreshAllRecents();
-    }
-  }, [user?.recents]);
-
-  useEffect(() => {
-    if (!user && localRecents.length > 0) {
+    if (localRecents.length > 0) {
       refreshAllRecents();
     }
   }, [localRecents]);
