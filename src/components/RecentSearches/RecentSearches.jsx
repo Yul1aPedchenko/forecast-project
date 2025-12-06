@@ -26,10 +26,9 @@ export const RecentSearches = () => {
   const favourites = user ? user.favourites || [] : [];
   const recents = user ? user.recents || [] : localRecents;
 
-  const favouriteIds = new Set(favourites.map(f => f.id));
-  const recentsWithoutFavourites = recents.filter(city => !favouriteIds.has(city.id));
-
-  const items = [...favourites, ...recentsWithoutFavourites];
+  const allCities = [...favourites, ...recents];
+  const uniqueCities = Array.from(new Map(allCities.map((c) => [c.id, c])).values());
+  const items = uniqueCities;
 
   const [activeSection, setActiveSection] = useState({
     city: null,
