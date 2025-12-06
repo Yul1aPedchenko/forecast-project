@@ -66,6 +66,9 @@
       display: flex;
       align-items: center;
       gap: 25px;
+      p {
+        cursor: pointer;
+      }
     }
     &__signup {
       background-color: $accentColor;

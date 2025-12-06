@@ -23,7 +23,14 @@ export const RecentSearches = () => {
   const { user, localRecents, updateUser, refreshAllRecents } = useAuth();
   const { refreshCity, removeCity } = useRecents();
 
-  const items = user ? user.recents : localRecents;
+  const favourites = user ? user.favourites || [] : [];
+  const recents = user ? user.recents || [] : localRecents;
+
+  const favouriteIds = new Set(favourites.map(f => f.id));
+  const recentsWithoutFavourites = recents.filter(city => !favouriteIds.has(city.id));
+
+  const items = [...favourites, ...recentsWithoutFavourites];
+
   const [activeSection, setActiveSection] = useState({
     city: null,
     type: null,
