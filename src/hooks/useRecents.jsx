@@ -42,34 +42,46 @@ export const useRecents = () => {
       const fresh = await weatherAPI.getCurrentWithFreshTime(city.name);
       if (!fresh) return;
 
+      const freshCity = { ...fresh, updatedAt: Date.now() };
+
       if (user) {
-        updateUser({
+        const updatedRecents = user.recents.map((c) => (c.id === city.id ? freshCity : c));
+        const updatedFavourites = user.favourites.map((c) => (c.id === city.id ? freshCity : c));
+
+        const newUser = {
           ...user,
-          recents: user.recents.map((c) => (c.id === city.id ? { ...fresh, updatedAt: Date.now() } : c)),
-        });
+          recents: updatedRecents,
+          favourites: updatedFavourites,
+        };
+
+        updateUser(newUser);
 
         userAPI
           .update(user.id, {
-            recents: user.recents.map((c) => (c.id === city.id ? fresh : c)),
+            recents: updatedRecents,
+            favourites: updatedFavourites,
           })
           .catch(console.error);
       } else {
-        setLocalRecents((prev) => prev.map((c) => (c.id === city.id ? { ...fresh, updatedAt: Date.now() } : c)));
+        setLocalRecents((prev) => prev.map((c) => (c.id === city.id ? freshCity : c)));
       }
     } catch (err) {
-      console.warn("Failed to update:", city.name);
+      console.warn("Failed to refresh:", city.name);
     }
   };
 
   const removeCity = async (cityId) => {
-    if (user) {
-      const updated = user.recents.filter((c) => c.id !== cityId);
-      await userAPI.update(user.id, { recents: updated });
-      updateUser({ ...user, recents: updated });
-    } else {
-      setLocalRecents(localRecents.filter((c) => c.id !== cityId));
-    }
-  };
+  if (user) {
+    const newRecents = user.recents.filter(c => c.id !== cityId);
+    const newFavourites = user.favourites.filter(c => c.id !== cityId); 
+
+    updateUser({ ...user, recents: newRecents, favourites: newFavourites });
+
+    await userAPI.update(user.id, { recents: newRecents, favourites: newFavourites });
+  } else {
+    setLocalRecents(prev => prev.filter(c => c.id !== cityId));
+  }
+};
 
   return { addCity, refreshCity, removeCity };
 };
