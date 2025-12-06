@@ -23,7 +23,14 @@ export const RecentSearches = () => {
   const { user, localRecents, updateUser, refreshAllRecents } = useAuth();
   const { refreshCity, removeCity } = useRecents();
 
-  const items = user ? user.recents : localRecents;
+  const favourites = user ? user.favourites || [] : [];
+  const recents = user ? user.recents || [] : localRecents;
+
+  const favouriteIds = new Set(favourites.map(f => f.id));
+  const recentsWithoutFavourites = recents.filter(city => !favouriteIds.has(city.id));
+
+  const items = [...favourites, ...recentsWithoutFavourites];
+
   const [activeSection, setActiveSection] = useState({
     city: null,
     type: null,
@@ -98,7 +105,6 @@ export const RecentSearches = () => {
               <CityCard city={city} onLike={() => toggleFavourite(city)} onDelete={removeCity} onRefresh={() => refreshCity(city)} onMore={() => toggleSection(city, "more")} onHourly={() => toggleSection(city, "hourly")} onWeekly={() => toggleSection(city, "weekly")} />
             </div>
           ))}
-          {items.map(city => console.log(city.id, city.name, city.updatedAt))}
         </Slider>
 
         {activeSection.type === "more" && activeSection.forecast && <Metrics city={activeSection.city} forecast={activeSection.forecast} />}

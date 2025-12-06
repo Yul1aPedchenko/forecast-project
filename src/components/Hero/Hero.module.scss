@@ -19,11 +19,12 @@
   }
   &__form {
     display: flex;
+    gap: 10px;
   }
   &__input {
     @include typography(Montserrat, 500, 6px);
-    padding: 4px 100px 4px 10px;
-    border-radius: 5px 0 0 5px;
+    border-radius: 8px;
+    padding: 12px 30px;
     border: none;
   }
   &__btn {
@@ -31,9 +32,8 @@
     height: auto;
     display: flex;
     align-items: center;
-    float: left;
-    padding: 2px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 8px;
+    padding: 10px 30px;
     border: 1px solid $accentColor;
     transition: $ts;
   }
@@ -44,24 +44,6 @@
     color: $mainBgColor;
   }
 }
-// @supports (background-image: $overlay, url("../../images/hero/bg@1x.webp")) {
-//   .hero {
-//     background-image: $overlay, url("../../images/hero/bg@1x.webp");
-//     background-size: cover;
-//   }
-// }
-// @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-//   .hero {
-//     background-image: $overlay, url("../../images/hero/bg@2x.png");
-//     background-size: cover;
-//   }
-//   @supports (background-image: $overlay, url("../../images/hero/bg@2x.webp")) {
-//     .hero {
-//       background-image: $overlay, url("../../images/hero/bg@2x.webp");
-//       background-size: cover;
-//     }
-//   }
-// }
 
 @include tablet {
   .hero {
@@ -73,10 +55,7 @@
     }
     &__input {
       @include typography(Montserrat, 500, 10px);
-      padding: 8px 270px 8px 20px;
-    }
-    &__btn {
-      padding: 5px 6px;
+      width: 450px;
     }
     &__btn svg {
       width: 16px;
@@ -115,10 +94,6 @@
     }
     &__input {
       @include typography(Montserrat, 500, 14px);
-      padding: 13px 432px 12px 30px;
-    }
-    &__btn {
-      padding: 9px 10px;
     }
     &__btn svg {
       width: 25px;
