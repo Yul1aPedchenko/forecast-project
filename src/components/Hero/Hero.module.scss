@@ -26,6 +26,10 @@
     border-radius: 8px;
     padding: 12px 30px;
     border: none;
+    transition: $ts;
+  }
+  &__input:focus {
+    outline: 3px solid $accentColor;
   }
   &__btn {
     background-color: $accentColor;

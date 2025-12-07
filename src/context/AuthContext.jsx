@@ -184,7 +184,7 @@ export const AuthProvider = ({ children }) => {
           }
           return newCityData;
         } catch (err) {
-          console.log(`Не вдалося оновити ${city.name}`);
+          console.log(`Failed to update ${city.name}`);
           return city;
         }
       })
