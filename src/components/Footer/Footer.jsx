@@ -26,17 +26,17 @@ export const Footer = () => {
               <h2 className={styles.footer__title}>Contact us</h2>
               <ul className={styles.footer__list}>
                 <li>
-                  <a href="https://www.instagram.com/forecast_platform?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className={styles.footer__sm}>
+                  <a href="https://www.instagram.com/forecast_platform?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className={styles.footer__sm} target="_blank">
                     <img src={Inst} alt="inst" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/wxforecast/" className={styles.footer__sm}>
+                  <a href="https://www.facebook.com/wxforecast/" className={styles.footer__sm} target="_blank">
                     <img src={Fb} alt="facebook" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.tiktok.com/@weather?is_from_webapp=1&sender_device=pc" className={styles.footer__sm}>
+                  <a href="https://www.tiktok.com/@weather?is_from_webapp=1&sender_device=pc" className={styles.footer__sm} target="_blank">
                     <img src={Ws} alt="tt" />
                   </a>
                 </li>
