@@ -6,8 +6,9 @@ import { Container } from "../../Container/Container";
 import styles from "./MobileMenu.module.scss";
 import User from "../../../images/user.svg";
 export const MobileMenu = ({ isMenuOpen, onClose, onClick }) => {
-  const { user } = useAuth();
 
+  const { user, logout } = useAuth();
+  
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("no-scroll");
@@ -30,17 +31,17 @@ export const MobileMenu = ({ isMenuOpen, onClose, onClick }) => {
             <nav className={styles.mobile__nav}>
               <ul className={styles.mobile__list}>
                 <li className={styles.mobile__item}>
-                  <a href="#" className={styles.mobile__link}>
+                  <a href="#who" className={styles.mobile__link}>
                     Who we are
                   </a>
                 </li>
                 <li className={styles.mobile__item}>
-                  <a href="#" className={styles.mobile__link}>
+                  <a href="#footer" className={styles.mobile__link}>
                     Contacts
                   </a>
                 </li>
                 <li className={styles.mobile__item}>
-                  <a href="#" className={styles.mobile__link}>
+                  <a href="#menu" className={styles.mobile__link}>
                     Menu
                   </a>
                 </li>

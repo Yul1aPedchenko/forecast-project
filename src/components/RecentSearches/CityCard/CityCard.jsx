@@ -47,7 +47,7 @@ export const CityCard = ({ city, onLike, onDelete, onRefresh, onMore, onHourly, 
         <div className={styles.top__wrap}>
           <p className={styles.top__weather}>{city.weather}</p>
           <button className={styles.top__fav} onClick={() => onLike(city)}>
-            {user?.favourites?.some((f) => f.id === city.id) ? <FaHeart /> : <FaRegHeart />}
+            {user?.favourites?.some((f) => f.id === city.id) ? <FaHeart  className={styles.top__faved} /> : <FaRegHeart />}
           </button>
         </div>
 

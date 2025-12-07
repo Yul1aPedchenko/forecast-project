@@ -25,17 +25,17 @@ export const Header = () => {
             <nav className={styles.header__nav}>
               <ul className={styles.header__list}>
                 <li className={styles.header__item}>
-                  <a href="#" className={styles.header__link}>
+                  <a href="#who" className={styles.header__link}>
                     Who we are
                   </a>
                 </li>
                 <li className={styles.header__item}>
-                  <a href="#" className={styles.header__link}>
+                  <a href="#footer" className={styles.header__link}>
                     Contacts
                   </a>
                 </li>
                 <li className={styles.header__item}>
-                  <a href="#" className={styles.header__link}>
+                  <a href="#menu" className={styles.header__link}>
                     Menu
                   </a>
                 </li>

@@ -96,7 +96,7 @@ export const RecentSearches = () => {
   };
 
   return (
-    <section>
+    <section id="menu">
       <Container>
         <Slider {...settings} className={styles.slider}>
           {items.map((city) => (

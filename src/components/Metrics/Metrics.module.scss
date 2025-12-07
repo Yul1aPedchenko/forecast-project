@@ -7,14 +7,16 @@
   margin-bottom: 60px;
   &__list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
   }
   &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    width: 150px;
     height: 150px;
   }
   &__minMax{
