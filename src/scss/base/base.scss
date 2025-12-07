@@ -1,17 +1,18 @@
-@use './reset';
+@use "./reset";
 @use "../utils/variables.scss" as *;
-@import 'normalize.css';
+@import "normalize.css";
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-    background-color: $mainBgColor;;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
+  background-color: $mainBgColor;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
 }
 body.no-scroll {
   overflow: hidden;
+  height: 100vh;
 }
