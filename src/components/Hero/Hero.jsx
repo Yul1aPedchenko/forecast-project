@@ -11,7 +11,7 @@ export const Hero = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!query.trim()) return;
+    if (!query.trim()) alert("Please don't leave this field empty. Thanks");
 
     try {
       await addCity(query);
