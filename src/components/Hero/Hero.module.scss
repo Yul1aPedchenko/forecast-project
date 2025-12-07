@@ -18,18 +18,23 @@
     color: $secondaryTextColor;
   }
   &__form {
+    position: relative;
     display: flex;
-    gap: 10px;
+    gap: 5px;
   }
   &__input {
     @include typography(Montserrat, 500, 6px);
     border-radius: 8px;
-    padding: 12px 30px;
+    padding: 4px 10px;
+    width: 150px;
     border: none;
     transition: $ts;
   }
   &__input:focus {
     outline: 3px solid $accentColor;
+  }
+  &__input.error {
+    outline: 3px solid $likeColor;
   }
   &__btn {
     background-color: $accentColor;
@@ -37,7 +42,7 @@
     display: flex;
     align-items: center;
     border-radius: 8px;
-    padding: 10px 30px;
+    padding: 4px 10px;
     border: 1px solid $accentColor;
     transition: $ts;
   }
@@ -46,6 +51,12 @@
   }
   &__btn svg {
     color: $mainBgColor;
+  }
+  &__error {
+    position: absolute;
+    top: 120%;
+    left: 12px;
+    color: $likeColor;
   }
 }
 
@@ -57,9 +68,16 @@
       @include typography(Montserrat, 600, 20px);
       margin-bottom: 40px;
     }
+    &__form {
+      gap: 10px;
+    }
     &__input {
       @include typography(Montserrat, 500, 10px);
       width: 450px;
+      padding: 12px 30px;
+    }
+    &__btn {
+      padding: 12px 30px;
     }
     &__btn svg {
       width: 16px;
@@ -67,24 +85,6 @@
       color: $mainBgColor;
     }
   }
-  // @supports (background-image: $overlay, url("../../images/hero/bg-6@1x.webp")) {
-  //   .hero {
-  //     background-image: $overlay, url("../../images/hero/bg-6@1x.webp");
-  //     background-size: cover;
-  //   }
-  // }
-  // @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  //   .hero {
-  //     background-image: $overlay, url("../../images/hero/bg-6@1x.png");
-  //     background-size: cover;
-  //   }
-  //   @supports (background-image: $overlay, url("../../images/hero/bg-6@1x.webp")) {
-  //     .hero {
-  //       background-image: $overlay, url("../../images/hero/bg-6@1x.webp");
-  //       background-size: cover;
-  //     }
-  //   }
-  // }
 }
 
 @include desktop() {
@@ -105,22 +105,4 @@
       color: $mainBgColor;
     }
   }
-  // @supports (background-image: $overlay, url("../../images/hero/bg-desktop@1x.webp")) {
-  //   .hero {
-  //     background-image: $overlay, url("../../images/hero/bg-desktop@1x.webp");
-  //     background-size: cover;
-  //   }
-  // }
-  // @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  //   .hero {
-  //     background-image: $overlay, url("../../images/hero/bg-desktop@2x.png");
-  //     background-size: cover;
-  //   }
-  //   @supports (background-image: $overlay, url("../../images/hero/bg-desktop@2x.webp")) {
-  //     .hero {
-  //       background-image: $overlay, url("../../images/hero/bg-desktop@2x.webp");
-  //       background-size: cover;
-  //     }
-  //   }
-  // }
 }

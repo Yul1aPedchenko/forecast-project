@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
 
 import { Container } from "../../Container/Container";
@@ -6,6 +7,19 @@ import styles from "./MobileMenu.module.scss";
 import User from "../../../images/user.svg";
 export const MobileMenu = ({ isMenuOpen, onClose, onClick }) => {
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
       {isMenuOpen && <div className={styles.backdrop} onClick={onClose}></div>}
