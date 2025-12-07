@@ -5,6 +5,7 @@ import styles from "./AuthModal.module.scss";
 export const AuthModal = ({ isModalOpen, onClose }) => {
   const [isSignUp, setIsSignUp] = useState(true);
   const { signup, login } = useAuth();
+  const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -20,13 +21,13 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
     if (success) {
       onClose();
     } else {
-      alert("User with this email already exists");
+      setError("User with this email already exists");
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setError("");
     const data = {
       email: e.target.email.value.trim(),
       password: e.target.password.value.trim(),
@@ -37,7 +38,7 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
     if (success) {
       onClose();
     } else {
-      alert("Invalid email or password");
+      setError("Invalid email or password");
     }
   };
 
@@ -56,12 +57,13 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
 
               <label className={styles.modal__label}>
                 E-Mail
-                <input className={styles.modal__input} type="email" name="email" placeholder="E-Mail" required />
+                <input className={`${styles.modal__input} ${error ? styles.error : ""}`} type="email" name="email" placeholder="E-Mail" required />
               </label>
               <label className={styles.modal__label}>
                 Password
                 <input className={styles.modal__input} type="password" name="password" placeholder="Password" required />
               </label>
+              {error && <p className={styles.modal__error}>{error}</p>}
               <button type="submit" className={styles.modal__submit}>
                 Sign Up
               </button>
@@ -69,6 +71,7 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   setIsSignUp(false);
+                  setError('')
                 }}
                 className={styles.modal__btn}
               >
@@ -82,12 +85,13 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
             <form onSubmit={handleLogin} className={styles.modal__form}>
               <label className={styles.modal__label}>
                 E-Mail
-                <input className={styles.modal__input} type="email" name="email" placeholder="E-Mail" required />
+                <input className={`${styles.modal__input} ${error ? styles.error : ""}`} type="email" name="email" placeholder="E-Mail" required />
               </label>
               <label className={styles.modal__label}>
                 Password
-                <input className={styles.modal__input} type="password" name="password" placeholder="Password" required />
+                <input className={`${styles.modal__input} ${error ? styles.error : ""}`} type="password" name="password" placeholder="Password" required />
               </label>
+              {error && <p className={styles.modal__error}>{error}</p>}
               <button type="submit" className={styles.modal__submit}>
                 Log In
               </button>
@@ -95,6 +99,7 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   setIsSignUp(true);
+                   setError('')
                 }}
                 className={styles.modal__btn}
               >

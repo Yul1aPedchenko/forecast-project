@@ -12,3 +12,6 @@ body {
     font-weight: 500;
     font-size: 14px;
 }
+body.no-scroll {
+  overflow: hidden;
+}
