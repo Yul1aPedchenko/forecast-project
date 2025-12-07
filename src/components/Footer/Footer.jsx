@@ -18,7 +18,7 @@ export const Footer = () => {
           <div className={styles.footer__wrap}>
             <div className={styles.footer__subwrap}>
               <h2 className={styles.footer__title}>Address</h2>
-              <a href="https://maps.app.goo.gl/azMYyCBvhG8EMtrNA" className={styles.footer__link}>
+              <a href="https://maps.app.goo.gl/azMYyCBvhG8EMtrNA" className={styles.footer__link} target="_blank">
                 Svobody str. 35 Kyiv <br /> Ukraine
               </a>
             </div>
