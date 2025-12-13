@@ -18,7 +18,8 @@
     @include typography(Montserrat Alternates, 500, 10px);
   }
   &__logo {
-    width: 34px;
+    @include typography(Montserrat, 500, 16px, italic, null, -0.06em);
+    color: $mainTextColor;
   }
   &__nav {
     display: none;
@@ -49,7 +50,7 @@
   .header {
     box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25);
     &__logo {
-      width: 54px;
+      @include typography(Montserrat, 500, 20px, italic, null, -0.06em);
     }
     &__nav {
       display: flex;
@@ -93,11 +94,11 @@
 
 @include desktop() {
   .header {
+    &__logo {
+      @include typography(Montserrat, 500, 26px, italic, null, -0.06em);
+    }
     &__wrap {
       font-size: 12px;
-    }
-    &__logo {
-      width: 82px;
     }
     &__actions {
       gap: 27px;

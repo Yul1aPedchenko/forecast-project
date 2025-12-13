@@ -6,13 +6,13 @@
   padding: 20px 0;
   &__wrapper {
     display: flex;
+    flex-direction: column;
     align-items: start;
     position: relative;
   }
   &__logo {
-    display: flex;
-    width: 50px;
-    position: absolute;
+    @include typography(Montserrat, 500, 16px, italic, null, -0.06em);
+    color: $secondaryTextColor;
   }
   &__icon {
     filter: brightness(0) invert(1);
@@ -59,10 +59,11 @@
     padding: 35px 0;
     &__wrapper {
       gap: 100px;
+      flex-direction: row;
     }
     &__logo {
       position: relative;
-      width: 58px;
+      @include typography(Montserrat, 500, 20px, italic, null, -0.06em);
     }
     &__wrap {
       flex-direction: row;
@@ -90,7 +91,7 @@
       gap: 103px;
     }
     &__logo {
-      width: 90px;
+       @include typography(Montserrat, 500, 26px, italic, null, -0.06em);
     }
     &__wrap {
       gap: 103px;

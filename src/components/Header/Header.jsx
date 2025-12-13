@@ -21,7 +21,7 @@ export const Header = () => {
       <header className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}>
         <Container>
           <div className={styles.header__wrap}>
-            <img className={styles.header__logo} src={Logo} alt="logo" />
+            <a href="#" className={styles.header__logo}>the weather.</a>
             <nav className={styles.header__nav}>
               <ul className={styles.header__list}>
                 <li className={styles.header__item}>
