@@ -47,7 +47,7 @@ export const CityCard = ({ city, onLike, onDelete, onRefresh, onMore, onHourly, 
         <div className={styles.top__wrap}>
           <p className={styles.top__weather}>{city.weather}</p>
           <button className={styles.top__fav} onClick={() => onLike(city)}>
-            {user?.favourites?.some((f) => f.id === city.id) ? <FaHeart  className={styles.top__faved} /> : <FaRegHeart />}
+            {user?.favourites?.some((f) => f.id === city.id) ? <FaHeart className={styles.top__faved} /> : <FaRegHeart />}
           </button>
         </div>
 
@@ -56,11 +56,12 @@ export const CityCard = ({ city, onLike, onDelete, onRefresh, onMore, onHourly, 
             <TbClockHour3 className={styles.top__icon} />
             <span className={styles.top__text}>Hourly Forecast</span>
           </button>
-
-          <button className={`${styles.top__btn} weekly`} onClick={() => onWeekly(city)}>
-            <LuCalendarDays className={styles.top__icon} />
-            <span className={styles.top__text}>Weekly Forecast</span>
-          </button>
+          {user && (
+            <button className={`${styles.top__btn} weekly`} onClick={() => onWeekly(city)}>
+              <LuCalendarDays className={styles.top__icon} />
+              <span className={styles.top__text}>Weekly Forecast</span>
+            </button>
+          )}
 
           <button className={`${styles.top__btn} more`} onClick={() => onMore(city)}>
             <IoIosMore className={styles.top__icon} />
