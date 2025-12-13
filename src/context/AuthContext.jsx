@@ -28,12 +28,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (localRecents.length > 0) {
-      refreshAllRecents();
-    }
-  }, [localRecents]);
-
-  useEffect(() => {
     if (user) {
       localStorage.setItem("weatherUser", JSON.stringify(user));
     } else {
@@ -120,36 +114,6 @@ export const AuthProvider = ({ children }) => {
       favourites: updated,
     });
   };
-  const refreshSingleCity = async (city) => {
-    try {
-      const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.name}&appid=${API_KEY}&units=metric`);
-      const data = res.data;
-      const now = Math.floor(Date.now() / 1000);
-
-      const updatedCity = {
-        id: data.id,
-        name: data.name,
-        country: data.sys.country,
-        temp: data.main.temp,
-        weather: data.weather[0].main,
-        icon: data.weather[0].icon,
-        dt: now,
-        timezone: data.timezone,
-        coord: { lat: data.coord.lat, lon: data.coord.lon },
-      };
-
-      if (user) {
-        const list = user.recents.map((c) => (c.name.toLowerCase() === city.name.toLowerCase() ? updatedCity : c));
-        setUser({ ...user, recents: list });
-        await axios.put(`${API_URL}/users/${user.id}`, { ...user, recents: list });
-      } else {
-        const list = localRecents.map((c) => (c.name.toLowerCase() === city.name.toLowerCase() ? updatedCity : c));
-        setLocalRecents(list);
-      }
-    } catch (err) {
-      console.log("Error refreshing city:", err);
-    }
-  };
   const refreshAllRecents = async () => {
     const citiesToRefresh = user ? user.recents : localRecents;
     if (!citiesToRefresh || citiesToRefresh.length === 0) return;
@@ -233,7 +197,6 @@ export const AuthProvider = ({ children }) => {
         addToRecents,
         removeFromRecents,
         addToFavourites,
-        refreshSingleCity,
         refreshAllRecents,
       }}
     >

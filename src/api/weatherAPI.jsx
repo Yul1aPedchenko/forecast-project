@@ -1,13 +1,13 @@
 import { weatherApi } from "./axiosInstance";
 
-const formatCity = (data, useCurrentTime = false) => ({
+const formatCity = (data) => ({
   id: data.id,
   name: data.name,
   country: data.sys.country,
   temp: data.main.temp,
   weather: data.weather[0].main,
   icon: data.weather[0].icon,
-  dt: useCurrentTime ? Math.floor(Date.now() / 1000) : data.dt,
+  dt: Math.floor(Date.now() / 1000),
   timezone: data.timezone,
   coord: { lat: data.coord.lat, lon: data.coord.lon },
 });
@@ -57,7 +57,7 @@ export const weatherAPI = {
   getCurrentWithFreshTime: async (cityName) => {
     try {
       const { data } = await weatherApi.get("/weather", { params: { q: cityName } });
-      return formatCity(data, true);
+      return formatCity(data);
     } catch (err) {
       console.error("Refresh failed:", err);
       return null;

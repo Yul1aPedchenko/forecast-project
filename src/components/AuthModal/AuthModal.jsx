@@ -9,6 +9,7 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+     setError("");
 
     const user = {
       username: e.target.username.value.trim(),
@@ -19,6 +20,7 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
     const success = await signup(user);
 
     if (success) {
+      e.target.reset();
       onClose();
     } else {
       setError("User with this email already exists");
@@ -36,6 +38,7 @@ export const AuthModal = ({ isModalOpen, onClose }) => {
     const success = await login(data);
 
     if (success) {
+      e.target.reset();
       onClose();
     } else {
       setError("Invalid email or password");
