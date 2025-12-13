@@ -13,7 +13,7 @@ export const Footer = () => {
       <Container>
         <div className={styles.footer__wrapper}>
           <a href="#" className={styles.footer__logo}>
-            <img className={styles.footer__icon} src={Logo} alt="logo" />
+            the weather.
           </a>
           <div className={styles.footer__wrap}>
             <div className={styles.footer__subwrap}>
@@ -36,7 +36,7 @@ export const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.tiktok.com/@weather?is_from_webapp=1&sender_device=pc" className={styles.footer__sm} target="_blank">
+                  <a href="https://www.whatsapp.com/?lang=uk" className={styles.footer__sm} target="_blank">
                     <img src={Ws} alt="tt" />
                   </a>
                 </li>
